@@ -42,10 +42,12 @@ namespace ProjekatDiplomski.Services
             InsertDocumentRequest newdoc = new InsertDocumentRequest(index: "games", id: 0, doc: doc);
             var sqlresult = await _indexApi.InsertAsync(newdoc);
 
+            Console.WriteLine(sqlresult);
+
             return sqlresult.ToString();
         }
 
-        public async Task<string> DeleteGame(long id_Game)
+        public async Task<string> DeleteGame(ulong id_Game)
         {
             var tmp = await GetGameById(id_Game);
             if (tmp == null)
@@ -78,7 +80,7 @@ namespace ProjekatDiplomski.Services
                 for(int j = 0; j < dataNiz.Count; j++)
                 {
                     var data = dataNiz[j];
-                    long id = data.SelectToken("id").Value<long>();
+                    ulong id = data.SelectToken("id").Value<ulong>();
                     string name = data.SelectToken("name").Value<string>();
                     string description = data.SelectToken("description").Value<string>();
                     string developer = data.SelectToken("developer").Value<string>();
@@ -104,7 +106,6 @@ namespace ProjekatDiplomski.Services
                         Price = price,
                         Rating = rating
                     };
-
                     gamesList.Add(game);
                 }
    
@@ -113,7 +114,7 @@ namespace ProjekatDiplomski.Services
             return gamesList;
         }
 
-        public async Task<Game> GetGameById(long id_Game)
+        public async Task<Game> GetGameById(ulong id_Game)
         {
             string body = $"SELECT * FROM games WHERE id={id_Game};";
             var rawResponse = true;
@@ -130,7 +131,7 @@ namespace ProjekatDiplomski.Services
                 return null;
             }
 
-            long id = data.SelectToken("id").Value<long>();
+            ulong id = data.SelectToken("id").Value<ulong>();
             string name = data.SelectToken("name").Value<string>();
             string description = data.SelectToken("description").Value<string>();
             string developer = data.SelectToken("developer").Value<string>();
@@ -307,7 +308,7 @@ namespace ProjekatDiplomski.Services
                 for(int j = 0; j < dataNiz.Count; j++)
                 {
                     var data = dataNiz[j];
-                    long id = data.SelectToken("id").Value<long>();
+                    ulong id = data.SelectToken("id").Value<ulong>();
                     string nameG = data.SelectToken("name").Value<string>();
                     string descriptionG = data.SelectToken("description").Value<string>();
                     string developerG = data.SelectToken("developer").Value<string>();
@@ -342,12 +343,12 @@ namespace ProjekatDiplomski.Services
             return gamesList;
         }
 
-        public async Task<Game> ReplaceGame(long id_Game, string image, string name, string description, string developer, string publisher, string genres, string systems, int year, int price, int rating)
+        public async Task<Game> ReplaceGame(string image, string name, string description, string developer, string publisher, string genres, string systems, int year, int price, int rating)
         {
-            var tmp = await GetGameById(id_Game);
+            var tmp = await GetGameByName(name);
             if (tmp == null)
             {
-                throw new Exception($"Game that you want to replace - id:{id_Game} does not exist!");
+                throw new Exception($"Game that you want to replace - name:{name} does not exist!");
             }
 
             Dictionary<string, Object> doc = new Dictionary<string, Object>();
@@ -361,17 +362,17 @@ namespace ProjekatDiplomski.Services
             doc.Add("release_year", year);
             doc.Add("price", price);
             doc.Add("rating", rating);
-            InsertDocumentRequest newdoc = new InsertDocumentRequest(index: "games", id: id_Game, doc: doc);
+            InsertDocumentRequest newdoc = new InsertDocumentRequest(index: "games", id: Convert.ToInt64(tmp.Id), doc: doc);
             var sqlresult = await _indexApi.ReplaceAsync(newdoc);
 
-            var game = GetGameById(id_Game).Result;
+            var game = GetGameById(tmp.Id).Result;
 
             return game;
         }
 
         public async Task<Game> GetGameByName(string nameP)
         {
-            string body = $"SELECT * FROM games WHERE name={nameP};";
+            string body = $"SELECT * FROM games WHERE MATCH('@name {nameP}');";
             var rawResponse = true;
             List<Object> resultList = _utilsApi.Sql(body, rawResponse);
 
@@ -386,7 +387,7 @@ namespace ProjekatDiplomski.Services
                 return null;
             }
 
-            long id = data.SelectToken("id").Value<long>();
+            ulong id = data.SelectToken("id").Value<ulong>();
             string name = data.SelectToken("name").Value<string>();
             string description = data.SelectToken("description").Value<string>();
             string developer = data.SelectToken("developer").Value<string>();

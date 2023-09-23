@@ -8,37 +8,37 @@ using System.Diagnostics;
 
 namespace ProjekatDiplomski.Services
 {
-    public class UserService : IUserService
+    public class AdminService : IAdminService
     {
         private readonly IIndexApi _indexApi;
         private readonly ISearchApi _searchApi;
         private readonly IUtilsApi _utilsApi;
 
-        public UserService(IIndexApi indexApi, ISearchApi searchApi, IUtilsApi utilsApi)
+        public AdminService(IIndexApi indexApi, ISearchApi searchApi, IUtilsApi utilsApi)
         {
             _indexApi = indexApi;
             _searchApi = searchApi;
             _utilsApi = utilsApi;
         }
 
-        public async Task<string> AddUser(string username, string password)
+        public async Task<string> AddAdmin(string username, string password)
         {
-            var user = await GetUserByUsername(username);
-            if(user != null)
+            var admin = await GetAdminByUsername(username);
+            if(admin != null)
             {
-                throw new Exception($"User with username:{username} already exists!");
+                throw new Exception($"Admin with username:{username} already exists!");
             }
 
             Dictionary<string, Object> doc = new Dictionary<string, Object>();
             doc.Add("username", username.ToLower());
             doc.Add("password", BCrypt.Net.BCrypt.HashPassword(password));
-            InsertDocumentRequest newdoc = new InsertDocumentRequest(index: "users", id: 0, doc: doc);
+            InsertDocumentRequest newdoc = new InsertDocumentRequest(index: "admins", id: 0, doc: doc);
             var sqlresult = await _indexApi.InsertAsync(newdoc);
 
             return "You have signed up successfully!";
         }
 
-        public async Task<User> GetUserById(long id_User)
+        public async Task<Admin> GetAdminById(long id_Admin)
         {
             /*object query = new { query_string = $"@id {id}" };
             var searchRequest = new SearchRequest("users", query);
@@ -46,7 +46,7 @@ namespace ProjekatDiplomski.Services
             SearchResponse searchResponse = await _searchApi.SearchAsync(searchRequest);
             var result = (User?)searchResponse.Hits.Hits.FirstOrDefault();*/
 
-            string body = $"SELECT * FROM users WHERE id={id_User};";
+            string body = $"SELECT * FROM admins WHERE id={id_Admin};";
             var rawResponse = true;
             List<Object> resultList = _utilsApi.Sql(body, rawResponse);
 
@@ -62,22 +62,20 @@ namespace ProjekatDiplomski.Services
             }
 
             long id = data.SelectToken("id").Value<long>();
-            bool isAdmin = data.SelectToken("is_admin").Value<bool>();
             string userName = data.SelectToken("username").Value<string>();
             string password = data.SelectToken("password").Value<string>();
 
-            User user = new User()
+            Admin admin = new Admin()
             {
                 Id = id,
-                IsAdmin = isAdmin,
                 Username = userName,
                 Password = password
             };
 
-            return user;
+            return admin;
         }
 
-        public async Task<User> GetUserByUsername(string username)
+        public async Task<Admin> GetAdminByUsername(string username)
         {
             /*//object query = new { query_string = $"proba" };
             var searchRequest = new SearchRequest("users");
@@ -87,7 +85,7 @@ namespace ProjekatDiplomski.Services
             Console.WriteLine(searchResponse);
             var resultList = searchResponse.Hits.Hits;*/
 
-            string body = $"SELECT * FROM users WHERE username = '{username}';";
+            string body = $"SELECT * FROM admins WHERE username = '{username}';";
             var rawResponse = true;
             List<Object> resultList = _utilsApi.Sql(body, rawResponse);
 
@@ -103,19 +101,17 @@ namespace ProjekatDiplomski.Services
             }
 
             long id = data.SelectToken("id").Value<long>();
-            bool isAdmin = data.SelectToken("is_admin").Value<bool>();
             string userName = data.SelectToken("username").Value<string>();
             string password = data.SelectToken("password").Value<string>();
 
-            User user = new User()
+            Admin admin = new Admin()
             {
                 Id = id,
-                IsAdmin = isAdmin,
                 Username = userName,
                 Password = password
             };
 
-            return user;
+            return admin;
         }
     }
 }

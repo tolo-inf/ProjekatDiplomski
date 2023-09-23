@@ -2,7 +2,7 @@
 {
     public class ImageHelper
     {
-        private static string wwwroot = ".\\wwwroot";
+        private static string wwwroot = "C:\\Projekat Diplomski\\ProjekatDiplomski\\FrontEnd\\wwwroot";
         private static string extension = ".jpg";
 
         public async static Task<string> SaveImage(IFormFile slika)
@@ -18,7 +18,7 @@
                 await slika.CopyToAsync(stream);
             }
 
-            return filePath.Remove(0, 10);
+            return filePath.Remove(0, 57);
         }
 
         public static void DeleteImage(string link)

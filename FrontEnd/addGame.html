@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>GameManticore</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+<link rel="stylesheet" href="addGame.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-win8-steel w3-card">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="./homepageAdmin.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+      <div class="w3-win8-steel w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="./login.html" class="w3-bar-item w3-button w3-padding-large" onclick="logout()">LOG OUT</a>
+        <script>function logout(){
+            sessionStorage.removeItem("usernameAdmin");
+            sessionStorage.removeItem("passwordAdmin");
+            window.location.replace("login.html");
+          }</script>
+      </div>
+    </div>
+</div>
+
+<!-- Add Form -->
+<form action="addGame.js" method="post" id="addForm">
+    <div class="addContainer">
+        <h1><b>ADD GAME</b></h1>
+        <div>
+            <label for="gameImg"><b>Image:</b></label>
+            <input type="file" placeholder="image" name="gameImg" required>
+        </div>
+        <div>
+            <label for="gameName"><b>Name:</b></label>
+            <input type="text" placeholder="Name of the game" name="gameName" required>
+        </div>
+        <div>
+            <label for="gameDescription"><b>Description:</b></label>
+            <input type="text" placeholder="Enter game's description" name="gameDescription" required>
+        </div>
+        <div>
+            <label for="gameDeveloper"><b>Developer:</b></label>
+            <input type="text" placeholder="Game's developer" name="gameDeveloper" required>
+        </div>
+        <div>
+            <label for="gamePublisher"><b>Publisher:</b></label>
+            <input type="text" placeholder="Game's publisher" name="gamePublisher" required>
+        </div>
+        <div>
+            <label for="gameGenres"><b>Genres:</b></label>
+            <input type="text" placeholder="Genres to witch the game belongs" name="gameGenres" required>
+        </div>
+        <div>
+            <label for="gameSystems"><b>Systems:</b></label>
+            <input type="text" placeholder="Systems that the game is on" name="gameSystems" required>
+        </div>
+        <div>
+            <label for="gameYear"><b>Year:</b></label>
+            <input type="number" placeholder="1970-2023" name="gameYear" min="1970" required>
+        </div>
+        <div>
+            <label for="gamePrice"><b>Price:</b></label>
+            <input type="number" placeholder="0$ - 200$" name="gamePrice" min="0" max="200" required>
+        </div>
+        <div>
+            <label for="gameRating"><b>Rating:</b></label>
+            <input type="number" placeholder="0 - 100" name="gameRating" min="0" max="100" required>
+        </div>
+        <button class="w3-button w3-win8-steel w3-padding w3-margin-top" type="submit" id="btnAddGame">Add Game</button>
+        <button class="w3-button w3-win8-steel w3-padding w3-margin-top" type="button" id="btnCancel" class="btnCancel">Cancel</button>
+    </div>
+</form>
+
+    <script>
+        document.getElementById("btnCancel").onclick = function()
+        {
+            window.location.replace("./homepageAdmin.html");
+        };
+    </script>
+</body>
+
+<script src="addGame.js" type="module"></script>
+
+</html>

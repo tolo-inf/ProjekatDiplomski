@@ -2,28 +2,30 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjekatDiplomski.Models;
 using ProjekatDiplomski.RequestModels;
+using ProjekatDiplomski.Services;
 using ProjekatDiplomski.Services.IServices;
+using System.Numerics;
 
 namespace ProjekatDiplomski.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class AdminController : ControllerBase
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService) 
+        private readonly IAdminService _adminService;
+        public AdminController(IAdminService adminService) 
         {
-            _userService = userService;
+            _adminService = adminService;
         }
 
         [AllowAnonymous]
         [Route("SignUp")]
         [HttpPost]
-        public async Task<ActionResult> SignUp([FromForm] RequestUser user)
+        public async Task<ActionResult> SignUp([FromBody] RequestAdmin admin)
         {
             try
             {
-                var result = await _userService.AddUser(user.Username, user.Password);
+                var result = await _adminService.AddAdmin(admin.Username, admin.Password);
 
                 return Ok(result);
             }
@@ -36,18 +38,18 @@ namespace ProjekatDiplomski.Controllers
         [AllowAnonymous]
         [Route("LogIn")]
         [HttpPost]
-        public async Task<ActionResult> LogIn([FromForm] RequestUser requestUser)
+        public async Task<ActionResult> LogIn([FromBody] RequestAdmin requestAdmin)
         {
             try
             {
-                var user = await _userService.GetUserByUsername(requestUser.Username);
+                var admin = await _adminService.GetAdminByUsername(requestAdmin.Username);
 
-                if (user == null || !BCrypt.Net.BCrypt.Verify(requestUser.Password, user.Password))
+                if (admin == null || !BCrypt.Net.BCrypt.Verify(requestAdmin.Password, admin.Password))
                 {
                     throw new Exception("Invalid username or password. Please try again.");
                 }
 
-                return Ok(user);
+                return Ok(admin);
             }
             catch (Exception e)
             {
@@ -55,20 +57,20 @@ namespace ProjekatDiplomski.Controllers
             }
         }
 
-        [Route("GetUser")]
+        [Route("GetAdmin")]
         [HttpGet]
-        public async Task<ActionResult> GetUser(long userId)
+        public async Task<ActionResult> GetAdmin(long adminId)
         {
             try
             {
-                var user = await _userService.GetUserById(userId);
+                var admin = await _adminService.GetAdminById(adminId);
 
-                if (user == null) 
+                if (admin == null) 
                 {
-                    return BadRequest($"User with id:{userId} does not exist!");
+                    return BadRequest($"Admin with id:{adminId} does not exist!");
                 }
 
-                return Ok(user);
+                return Ok(admin);
             }
             catch (Exception ex)
             {

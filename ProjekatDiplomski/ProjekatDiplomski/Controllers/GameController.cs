@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using ProjekatDiplomski.Helper;
 using ProjekatDiplomski.Models;
 using ProjekatDiplomski.RequestModels;
+using ProjekatDiplomski.Services;
 using ProjekatDiplomski.Services.IServices;
+using System.Xml.Linq;
 
 namespace ProjekatDiplomski.Controllers
 {
@@ -17,16 +19,21 @@ namespace ProjekatDiplomski.Controllers
             _gameService = gameService;
         }
 
-        [Route("AddGame")]
+        [AllowAnonymous]
+        [Route("SaveImage")]
         [HttpPost]
-        public async Task<ActionResult> AddGame([FromForm] RequestGame game, IFormFile img)
+        public async Task<ActionResult> SaveImage(IFormFile img)
         {
             try
             {
                 string imagePath = await ImageHelper.SaveImage(img);
-                var result = _gameService.AddGame(imagePath, game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.Year, game.Price, game.Rating);
+                
+                if (String.IsNullOrWhiteSpace(imagePath))
+                {
+                    return BadRequest($"Image failed to save!");
+                }
 
-                return Ok("Game successfully added!");
+                return Ok(imagePath);
             }
             catch (Exception e)
             {
@@ -34,13 +41,36 @@ namespace ProjekatDiplomski.Controllers
             }
         }
 
-        [Route("ReplaceGame")]
+        [AllowAnonymous]
+        [Route("AddGame")]
         [HttpPost]
-        public async Task<ActionResult> ReplaceGame([FromForm] Game game)
+        public async Task<ActionResult> AddGame([FromBody] RequestGame game)
         {
             try
             {
-                var result = await _gameService.ReplaceGame(game.Id, game.Image, game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.Year, game.Price, game.Rating);
+                var result = _gameService.AddGame(game.Image, game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.Year, game.Price, game.Rating);
+
+                if (result.Result == null) 
+                {
+                    return BadRequest($"Game with name:{game.Name} already exist!");
+                }
+
+                return Ok($"Game with name:{game.Name} successfully added!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [Route("ReplaceGame")]
+        [HttpPost]
+        public async Task<ActionResult> ReplaceGame([FromBody] RequestGame game)
+        {
+            try
+            {
+                var result = await _gameService.ReplaceGame(game.Image, game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.Year, game.Price, game.Rating);
 
                 return Ok(result);
             }
@@ -50,9 +80,10 @@ namespace ProjekatDiplomski.Controllers
             }
         }
 
-        [Route("DeleteGame")]
+        [AllowAnonymous]
+        [Route("DeleteGameById")]
         [HttpDelete]
-        public async Task<ActionResult> DeleteGame(long id)
+        public async Task<ActionResult> DeleteGame(ulong id)
         {
             try
             {
@@ -65,14 +96,31 @@ namespace ProjekatDiplomski.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [Route("DeleteGame")]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteGame(string name)
+        {
+            try
+            {
+                var game = await _gameService.GetGameByName(name);
+                var result = await _gameService.DeleteGame(game.Id);
+                return Ok("Game successfully deleted!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [Route("GetGameById")]
         [HttpGet]
-        public async Task<ActionResult> GetGameById(long id)
+        public async Task<ActionResult> GetGameById(ulong id)
         {
             try
             {
                 var result = await _gameService.GetGameById(id);
-
                 return Ok(result);
             }
             catch (Exception e)
@@ -81,6 +129,23 @@ namespace ProjekatDiplomski.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [Route("GetGameByName")]
+        [HttpGet]
+        public async Task<ActionResult> GetGameByName(string name)
+        {
+            try
+            {
+                var result = await _gameService.GetGameByName(name);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [Route("GetAllGames")]
         [HttpGet]
         public async Task<ActionResult> GetAllGames()
@@ -88,7 +153,6 @@ namespace ProjekatDiplomski.Controllers
             try
             {
                 var result = await _gameService.GetAllGames();
-
                 return Ok(result);
             }
             catch (Exception e)
@@ -97,9 +161,10 @@ namespace ProjekatDiplomski.Controllers
             }
         }
 
+        [AllowAnonymous]
         [Route("PerformSearch")]
         [HttpPost]
-        public async Task<ActionResult> PerformSearch([FromForm] SearchGame game)
+        public async Task<ActionResult> PerformSearch([FromBody] SearchGame game)
         {
             try
             {

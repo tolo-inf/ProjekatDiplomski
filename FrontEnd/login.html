@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GameManticore-Admin</title>
+        <link rel = "stylesheet" href = "login.css">
+        <meta charset = "UTF-8">
+    </head>
+    <body >
+        <form action="login.js" method="post" id="loginAdmin" style = "position:absolute; left:120px; top:100px;">         
+            <div class="containerAdmin"style="background-color:	#F5F5F5">
+              <div class="form__message form__message--error"></div>
+              <label for="username"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="username" required>
+          
+              <label for="password"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" required>
+          
+              <button type="submit" class="btnLogInAdmin">Login</button>
+              <button type="button" id="btnAnonymous" class="btnAnonymous">Proceed Anonymously</button>
+            </div>
+          
+          </form>
+    
+          <script>
+            document.getElementById("btnAnonymous").onclick = function()
+            {
+              localStorage.setItem("anonymous", "yes");
+              window.location.replace("./homepage.html");
+            };
+            
+          </script>
+    </body>
+    <script src="login.js" type="module"></script>
+    
+</html>

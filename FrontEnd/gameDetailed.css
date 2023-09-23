@@ -1,0 +1,10 @@
+.gameDetails{
+    margin-top: 100px;
+    margin-left: 500px;
+}
+
+body{
+    background: rgba(226, 220, 220, 0.534); 
+    background-size: cover;
+    min-width: 400px;
+  }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZJY+7FomxqOCQwOfKFJp5tpkYn8TzVsE/yXdW065U4I=",
+  "Hash": "lY/3oRig89LFYzM+9XC08ej5sR4k4diUPoAQMowkRDE=",
   "Source": "ProjekatDiplomski",
   "BasePath": "_content/ProjekatDiplomski",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\4gfo2pwl.jpg"
+    },
+    {
+      "Identity": "C:\\Projekat Diplomski\\ProjekatDiplomski\\ProjekatDiplomski\\ProjekatDiplomski\\wwwroot\\pozadina.jpg",
+      "SourceId": "ProjekatDiplomski",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projekat Diplomski\\ProjekatDiplomski\\ProjekatDiplomski\\ProjekatDiplomski\\wwwroot\\",
+      "BasePath": "_content/ProjekatDiplomski",
+      "RelativePath": "pozadina.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pozadina.jpg"
+    },
+    {
+      "Identity": "C:\\Projekat Diplomski\\ProjekatDiplomski\\ProjekatDiplomski\\ProjekatDiplomski\\wwwroot\\pozadinaHome.jpg",
+      "SourceId": "ProjekatDiplomski",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projekat Diplomski\\ProjekatDiplomski\\ProjekatDiplomski\\ProjekatDiplomski\\wwwroot\\",
+      "BasePath": "_content/ProjekatDiplomski",
+      "RelativePath": "pozadinaHome.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pozadinaHome.jpg"
     },
     {
       "Identity": "C:\\Projekat Diplomski\\ProjekatDiplomski\\ProjekatDiplomski\\ProjekatDiplomski\\wwwroot\\rv31uzo2.jpg",
