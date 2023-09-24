@@ -1,4 +1,4 @@
-.addContainer{
+.addContainer, .editContainer{
     margin-top: 100px;
     margin-left: 500px;
 }
@@ -7,4 +7,57 @@ body{
     background: rgba(226, 220, 220, 0.534); 
     background-size: cover;
     min-width: 400px;
+}
+
+.w3-bar-item,.w3-button{
+    background-color: #04AA6D;
+    color: white;
+}
+
+.gameLbl{
+    margin-bottom: 20px;
+   
+}
+
+.lbl{
+    color: #04AA6D;
+    margin-right: 5px;
+}
+
+#btnCancel{
+    background-color: darkred;
+}
+
+input:focus {
+    border: 3px solid #555;
+  }
+
+.inDescription, .inGenres, .inSystems{
+    transition: width 0.4s ease-in-out;
+    width: 300px;
+}
+
+.inDescription:focus{
+    width: 60%;
+}
+
+.inGenres:focus, .inSystems:focus{
+    width: 25%;
+}
+
+.inName,.inDeveloper,.inPublisher{
+    transition: width 0.4s ease-in-out;
+    width: 250px;
+}
+
+.inName:focus,.inDeveloper:focus,.inPublisher:focus{
+    width: 30%;
+}
+
+.inPrice,.inRating{
+    width: 100px;
+}
+
+#btnSaveGame, #btnAddGame{
+    background-color: darkolivegreen;
 }

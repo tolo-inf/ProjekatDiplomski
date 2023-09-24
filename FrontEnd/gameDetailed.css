@@ -1,10 +1,38 @@
 .gameDetails{
     margin-top: 100px;
-    margin-left: 500px;
+    margin-left: 650px;
 }
 
 body{
     background: rgba(226, 220, 220, 0.534); 
     background-size: cover;
     min-width: 400px;
-  }
+}
+
+.lbl{
+    color: #04AA6D;
+    margin-right: 5px;
+}
+
+.gameLbl{
+    margin-bottom: 20px;
+    border-top: 1px solid #04AA6D;
+    max-width: 500px;
+}
+
+.w3-bar-item,.w3-button{
+    background-color: #04AA6D;
+    color: white;
+}
+
+.gameImage{
+    margin-bottom: 30px;
+}
+
+#btnEditGame{
+    background-color: goldenrod;
+}
+
+#btnDeleteGame{
+    background-color: darkred;
+}

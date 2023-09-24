@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>GameManticore</title>
+<title>Edit Game-Admin</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
-<link rel="stylesheet" href="editGame.css">
+<link rel="stylesheet" href="addGame.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -21,11 +21,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Navbar -->
 <div class="w3-top">
-    <div class="w3-bar w3-win8-steel w3-card">
-      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <div class="w3-bar w3-win8-olive w3-card">
       <a href="./homepageAdmin.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-      <div class="w3-win8-steel w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <div class="w3-win8-olive w3-card">
         <a href="./login.html" class="w3-bar-item w3-button w3-padding-large" onclick="logout()">LOG OUT</a>
         <script>function logout(){
             sessionStorage.removeItem("usernameAdmin");
@@ -40,48 +38,48 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <form action="editGame.js" method="post" id="editForm">
     <div class="editContainer">
         <h1><b>EDIT GAME</b></h1>
-        <div>
-            <label for="gameImg"><b>Image:</b></label>
+        <div class="gameLbl">
+            <label for="gameImg" class="w3-xlarge lbl w3-hover-text-red"><b>Image:</b></label>
             <input type="file" placeholder="image" name="gameImg" id="gameImg">
         </div>
-        <div>
-            <label for="gameName"><b>Name:</b></label>
-            <input type="text" placeholder="Name of the game" name="gameName" id="gameName" required>
+        <div class="gameLbl">
+            <label for="gameName" class="w3-xlarge lbl w3-hover-text-red"><b>Name:</b></label>
+            <input type="text" placeholder="Name of the game" class="inName" name="gameName" id="gameName" required>
         </div>
-        <div>
-            <label for="gameDescription"><b>Description:</b></label>
-            <input type="text" placeholder="Enter game's description" name="gameDescription" id="gameDescription" required>
+        <div class="gameLbl">
+            <label for="gameDescription" class="w3-xlarge lbl w3-hover-text-red"><b>Description:</b></label>
+            <input type="text" placeholder="Enter game's description" class="inDescription" name="gameDescription" id="gameDescription" required>
         </div>
-        <div>
-            <label for="gameDeveloper"><b>Developer:</b></label>
-            <input type="text" placeholder="Game's developer" name="gameDeveloper" id="gameDeveloper" required>
+        <div class="gameLbl">
+            <label for="gameDeveloper" class="w3-xlarge lbl w3-hover-text-red"><b>Developer:</b></label>
+            <input type="text" placeholder="Game's developer" class="inDeveloper" name="gameDeveloper" id="gameDeveloper" required>
         </div>
-        <div>
-            <label for="gamePublisher"><b>Publisher:</b></label>
-            <input type="text" placeholder="Game's publisher" name="gamePublisher" id="gamePublisher" required>
+        <div class="gameLbl">
+            <label for="gamePublisher" class="w3-xlarge lbl w3-hover-text-red"><b>Publisher:</b></label>
+            <input type="text" placeholder="Game's publisher" class="inPublisher" name="gamePublisher" id="gamePublisher" required>
         </div>
-        <div>
-            <label for="gameGenres"><b>Genres:</b></label>
-            <input type="text" placeholder="Genres to witch the game belongs" name="gameGenres" id="gameGenres" required>
+        <div class="gameLbl">
+            <label for="gameGenres" class="w3-xlarge lbl w3-hover-text-red"><b>Genres:</b></label>
+            <input type="text" placeholder="Genres to witch the game belongs" class="inGenres" name="gameGenres" id="gameGenres" required>
         </div>
-        <div>
-            <label for="gameSystems"><b>Systems:</b></label>
-            <input type="text" placeholder="Systems that the game is on" name="gameSystems" id="gameSystems" required>
+        <div class="gameLbl">
+            <label for="gameSystems" class="w3-xlarge lbl w3-hover-text-red"><b>Systems:</b></label>
+            <input type="text" placeholder="Systems that the game is on" class="inSystems" name="gameSystems" id="gameSystems" required>
         </div>
-        <div>
-            <label for="gameYear"><b>Year:</b></label>
-            <input type="number" placeholder="1970-2023" name="gameYear" min="1970" id="gameYear" required>
+        <div class="gameLbl">
+            <label for="gameYear" class="w3-xlarge lbl w3-hover-text-red"><b>Year:</b></label>
+            <input type="number" placeholder="1970-2023" name="gameYear" class="inYear" min="1970" id="gameYear" required>
         </div>
-        <div>
-            <label for="gamePrice"><b>Price:</b></label>
-            <input type="number" placeholder="0$ - 200$" name="gamePrice" min="0" max="200" id="gamePrice" required>
+        <div class="gameLbl">
+            <label for="gamePrice" class="w3-xlarge lbl w3-hover-text-red"><b>Price:</b></label>
+            <input type="number" placeholder="0$ - 200$" name="gamePrice" class="inPrice" min="0" max="200" id="gamePrice" required>
         </div>
-        <div>
-            <label for="gameRating"><b>Rating:</b></label>
-            <input type="number" placeholder="0 - 100" name="gameRating" min="0" max="100" id="gameRating" required>
+        <div class="gameLbl">
+            <label for="gameRating" class="w3-xlarge lbl w3-hover-text-red"><b>Rating:</b></label>
+            <input type="number" placeholder="0 - 100" name="gameRating" class="inRating" min="0" max="100" id="gameRating" required>
         </div>
-        <button class="w3-button w3-win8-steel w3-padding w3-margin-top" type="submit" id="btnSaveGame">Save Changes</button>
-        <button class="w3-button w3-win8-steel w3-padding w3-margin-top" type="button" id="btnCancel" class="btnCancel">Cancel</button>
+        <button class="w3-button w3-padding w3-margin-top w3-margin-bottom w3-margin-right" type="submit" id="btnSaveGame">Save Changes</button>
+        <button class="w3-button w3-padding w3-margin-top w3-margin-bottom w3-margin-right" type="button" id="btnCancel" class="btnCancel">Cancel</button>
     </div>
 </form>
 

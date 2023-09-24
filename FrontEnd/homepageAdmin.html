@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>GameManticore</title>
+<title>GameManticore-Admin</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,15 +21,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <!-- Navbar -->
 <div class="w3-top">
-    <div class="w3-bar w3-win8-steel w3-card">
-      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <div class="w3-bar w3-win8-olive w3-card">
       <a href="./homepageAdmin.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-      <div class="w3-win8-steel w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <div class="w3-win8-olive w3-card">
         <a href="./addGame.html" class="w3-bar-item w3-button w3-padding-large">ADD GAME</a>
       </div>
-      <div class="w3-win8-steel w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <div class="w3-win8-olive w3-card">
         <a href="./login.html" class="w3-bar-item w3-button w3-padding-large" onclick="logout()">LOG OUT</a>
         <script>function logout(){
             sessionStorage.removeItem("usernameAdmin");
@@ -46,37 +43,39 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <h1><b>SEARCH GAMES</b></h1>
         <div>
             <label for="gameName"><b>Name:</b></label>
-            <input type="text" placeholder="Name of the game" name="gameName">
+            <input type="text" placeholder="Name of the game" class="inName" name="gameName">
             <label for="gameDescription"><b>Description:</b></label>
-            <input type="text" placeholder="Enter game's description" name="gameDescription">
+            <input type="text" placeholder="Enter game's description" class="inDescription" name="gameDescription">
         </div>
         <div>
             <label for="gameDeveloper"><b>Developer:</b></label>
-            <input type="text" placeholder="Game's developer" name="gameDeveloper">
+            <input type="text" placeholder="Game's developer" class="inDeveloper" name="gameDeveloper">
             <label for="gamePublisher"><b>Publisher:</b></label>
-            <input type="text" placeholder="Game's publisher" name="gamePublisher">
+            <input type="text" placeholder="Game's publisher" class="inPublisher" name="gamePublisher">
         </div>
         <div>
             <label for="gameGenres"><b>Genres:</b></label>
-            <input type="text" placeholder="Genres to witch the game belongs" name="gameGenres">
+            <input type="text" placeholder="Genres to witch the game belongs" class="inGenres" name="gameGenres">
             <label for="gameSystems"><b>Systems:</b></label>
-            <input type="text" placeholder="Systems that the game is on" name="gameSystems">
+            <input type="text" placeholder="Systems that the game is on" class="inSystems" name="gameSystems">
         </div>
         <div>
             <label for="gameYearFrom"><b>Year from:</b></label>
             <input type="number" placeholder="1970-2023" name="gameYearFrom" min="1970">
             <label for="gameYearTo"><b>Year to:</b></label>
             <input type="number" placeholder="1970-2023" name="gameYearTo" min="1970">
-            <label for="gamePriceFrom"><b>Price from:</b></label>
-            <input type="number" placeholder="0$-200$" name="gamePriceFrom" min="0" max="200">
-            <label for="gamePriceTo"><b>Price to:</b></label>
-            <input type="number" placeholder="0$-200$" name="gamePriceTo" min="0" max="200">
-            <label for="gameRatingFrom"><b>Rating from:</b></label>
-            <input type="number" placeholder="0-100" name="gameRatingFrom" min="0" max="100">
-            <label for="gameRatingTo"><b>Rating to:</b></label>
-            <input type="number" placeholder="0-100" name="gameRatingTo" min="0" max="100">
         </div>
-        <button class="w3-button w3-win8-steel w3-padding w3-margin-top" type="submit" id="btnSearchGames">Search</button>
+        <div>
+            <label for="gamePriceFrom"><b>Price from:</b></label>
+            <input type="number" placeholder="0$-200$" name="gamePriceFrom" class="inPrice" min="0" max="200">
+            <label for="gamePriceTo"><b>Price to:</b></label>
+            <input type="number" placeholder="0$-200$" name="gamePriceTo" class="inPrice" min="0" max="200">
+            <label for="gameRatingFrom"><b>Rating from:</b></label>
+            <input type="number" placeholder="0-100" name="gameRatingFrom" class="inRating" min="0" max="100">
+            <label for="gameRatingTo"><b>Rating to:</b></label>
+            <input type="number" placeholder="0-100" name="gameRatingTo" class="inRating" min="0" max="100">
+        </div>
+        <button class="w3-button w3-padding w3-margin-top" type="submit" id="btnSearchGames">Search</button>
     </div>
 </form>
 </body>

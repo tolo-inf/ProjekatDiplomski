@@ -22,6 +22,7 @@ export class Game{
 
         let el = document.createElement("td");
         el.innerHTML="<img src='../wwwroot/" + this.img + "'" + "alt='gameImage' style='width:320px;height:140px;'/>";
+        el.classList.add("tdImage");
         el.onclick=(event)=>this.viewDetails();
         tr.appendChild(el);
         el = document.createElement("td");
