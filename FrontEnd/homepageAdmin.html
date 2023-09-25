@@ -31,6 +31,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <script>function logout(){
             sessionStorage.removeItem("usernameAdmin");
             sessionStorage.removeItem("passwordAdmin");
+            localStorage.removeItem("anonymous");
             window.location.replace("login.html");
           }</script>
       </div>
@@ -78,6 +79,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <button class="w3-button w3-padding w3-margin-top" type="submit" id="btnSearchGames">Search</button>
     </div>
 </form>
+<script>
+    let adminUsername = sessionStorage.getItem("usernameAdmin");
+    if(adminUsername == null)
+    {
+        document.body.style.visibility = "hidden";
+    }
+</script>
 </body>
 <script src="homepage.js" type="module"></script>
 </html>

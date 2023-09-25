@@ -28,6 +28,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <script>function logout(){
             sessionStorage.removeItem("usernameAdmin");
             sessionStorage.removeItem("passwordAdmin");
+            localStorage.removeItem("anonymous");
             window.location.replace("login.html");
           }</script>
       </div>

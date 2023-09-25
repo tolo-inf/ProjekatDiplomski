@@ -8,19 +8,6 @@ function setFormMessage(formElement, type, message) {
     messageElement.classList.add(`form__message--${type}`);
 }
 
-let adminUsername = sessionStorage.getItem("usernameAdmin");
-let anonymous = localStorage.getItem("anonymous");
-
-if(adminUsername == null)
-{
-    document.body.style.visibility = "hidden";
-}
-if(anonymous == "yes")
-{
-    document.body.style.visibility = "visible";
-}
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const searchForm = document.querySelector("#searchForm");
 
