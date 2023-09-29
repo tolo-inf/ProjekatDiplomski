@@ -168,7 +168,23 @@ namespace ProjekatDiplomski.Controllers
         {
             try
             {
-                var result = await _gameService.PerformSearch(game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.YearStart, game.YearEnd, game.PriceStart, game.PriceEnd, game.RatingStart, game.RatingEnd);
+                var result = await _gameService.PerformSearch(game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.YearStart, game.YearEnd, game.PriceStart, game.PriceEnd, game.RatingStart, game.RatingEnd, game.OpName, game.OpDesc, game.OpDev, game.OpPub, game.OpGen, game.OpSys);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [Route("PerformSearchAnywhere")]
+        [HttpPost]
+        public async Task<ActionResult> PerformSearchAnywhere([FromBody] SearchGame game)
+        {
+            try
+            {
+                var result = await _gameService.PerformSearchAnywhere(game.Name, game.Description, game.Developer, game.Publisher, game.Genres, game.Systems, game.YearStart, game.YearEnd, game.PriceStart, game.PriceEnd, game.RatingStart, game.RatingEnd, game.OpName, game.OpDesc, game.OpDev, game.OpPub, game.OpGen, game.OpSys);
                 return Ok(result);
             }
             catch (Exception e)

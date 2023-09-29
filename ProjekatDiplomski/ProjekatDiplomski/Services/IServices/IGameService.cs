@@ -10,6 +10,7 @@ namespace ProjekatDiplomski.Services.IServices
         public Task<Game> GetGameById(ulong id);
         public Task<Game> GetGameByName(string name);
         public Task<List<Game>> GetAllGames();
-        public Task<List<Game>> PerformSearch(string name, string description, string developer, string publisher, string genres, string systems, int yearStart, int yearEnd, int priceStart, int priceEnd, int ratingStart, int ratingEnd);
+        public Task<List<Game>> PerformSearch(string name, string description, string developer, string publisher, string genres, string systems, int yearStart, int yearEnd, int priceStart, int priceEnd, int ratingStart, int ratingEnd, string opName, string opDesc, string opDev, string opPub, string opGen, string opSys);
+        public Task<List<Game>> PerformSearchAnywhere(string name, string description, string developer, string publisher, string genres, string systems, int yearStart, int yearEnd, int priceStart, int priceEnd, int ratingStart, int ratingEnd, string opName, string opDesc, string opDev, string opPub, string opGen, string opSys);
     }
 }

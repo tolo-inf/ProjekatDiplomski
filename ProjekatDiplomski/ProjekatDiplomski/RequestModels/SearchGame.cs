@@ -14,5 +14,11 @@
         public int PriceEnd { get; set; }
         public int RatingStart { get; set; }
         public int RatingEnd { get; set; }
+        public string OpName { get; set; }
+        public string OpDesc { get; set; }
+        public string OpDev { get; set; }
+        public string OpPub { get; set; }
+        public string OpGen { get; set; }
+        public string OpSys { get; set; }
     }
 }

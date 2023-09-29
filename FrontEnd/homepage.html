@@ -33,20 +33,62 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <div>
             <label for="gameName"><b>Name:</b></label>
             <input type="text" placeholder="Name of the game" class="inName" name="gameName">
+            <input type="checkbox" name="cbxNameAND" id="cbxNameAND" class="cbxAND" value="AND" onclick="checkedOnClick(this);">
+            <label for="cbxNameAND"><i>AND</i></label>
+            <input type="checkbox" name="cbxNameOR" id="cbxNameOR" class="cbxOR" value="OR" onclick="checkedOnClick(this);">
+            <label for="cbxNameOR"><i>OR</i></label>
+            <input type="checkbox" name="cbxNameNOT" id="cbxNameNOT" class="cbxNOT" value="NOT" onclick="checkedOnClick(this);">
+            <label for="cbxNameNOT"><i>NOT</i></label>
+        </div>
+        <div>
             <label for="gameDescription"><b>Description:</b></label>
             <input type="text" placeholder="Enter game's description" class="inDescription" name="gameDescription">
+            <input type="checkbox" name="cbxDescAND" id="cbxDescAND" class="cbxAND" value="AND" onclick="checkedOnClick(this);">
+            <label for="cbxDescAND"><i>AND</i></label>
+            <input type="checkbox" name="cbxDescOR" id="cbxDescOR" class="cbxOR" value="OR" onclick="checkedOnClick(this);">
+            <label for="cbxDescOR"><i>OR</i></label>
+            <input type="checkbox" name="cbxDescNOT" id="cbxDescNOT" class="cbxNOT" value="NOT" onclick="checkedOnClick(this);">
+            <label for="cbxDescNOT"><i>NOT</i></label>
         </div>
         <div>
             <label for="gameDeveloper"><b>Developer:</b></label>
             <input type="text" placeholder="Game's developer" class="inDeveloper" name="gameDeveloper">
+            <input type="checkbox" name="cbxDevAND" id="cbxDevAND" class="cbxAND" value="AND" onclick="checkedOnClick(this);">
+            <label for="cbxDevAND"><i>AND</i></label>
+            <input type="checkbox" name="cbxDevOR" id="cbxDevOR" class="cbxOR" value="OR" onclick="checkedOnClick(this);">
+            <label for="cbxDevOR"><i>OR</i></label>
+            <input type="checkbox" name="cbxDevNOT" id="cbxDevNOT" class="cbxNOT" value="NOT" onclick="checkedOnClick(this);">
+            <label for="cbxDevNOT"><i>NOT</i></label>
+        </div>
+        <div>
             <label for="gamePublisher"><b>Publisher:</b></label>
             <input type="text" placeholder="Game's publisher" class="inPublisher" name="gamePublisher">
+            <input type="checkbox" name="cbxPubAND" id="cbxPubAND" class="cbxAND" value="AND" onclick="checkedOnClick(this);">
+            <label for="cbxPubAND"><i>AND</i></label>
+            <input type="checkbox" name="cbxPubOR" id="cbxPubOR" class="cbxOR" value="OR" onclick="checkedOnClick(this);">
+            <label for="cbxPubOR"><i>OR</i></label>
+            <input type="checkbox" name="cbxPubNOT" id="cbxPubNOT" class="cbxNOT" value="NOT" onclick="checkedOnClick(this);">
+            <label for="cbxPubNOT"><i>NOT</i></label>
         </div>
         <div>
             <label for="gameGenres"><b>Genres:</b></label>
             <input type="text" placeholder="Genres to witch the game belongs" class="inGenres" name="gameGenres">
+            <input type="checkbox" name="cbxGenAND" id="cbxGenAND" class="cbxAND" value="AND" onclick="checkedOnClick(this);">
+            <label for="cbxGenAND"><i>AND</i></label>
+            <input type="checkbox" name="cbxGenOR" id="cbxGenOR" class="cbxOR" value="OR" onclick="checkedOnClick(this);">
+            <label for="cbxGenOR"><i>OR</i></label>
+            <input type="checkbox" name="cbxGenNOT" id="cbxGenNOT" class="cbxNOT" value="NOT" onclick="checkedOnClick(this);">
+            <label for="cbxGenNOT"><i>NOT</i></label>
+        </div>
+        <div>
             <label for="gameSystems"><b>Systems:</b></label>
             <input type="text" placeholder="Systems that the game is on" class="inSystems" name="gameSystems">
+            <input type="checkbox" name="cbxSysAND" id="cbxSysAND" class="cbxAND" value="AND" onclick="checkedOnClick(this);">
+            <label for="cbxSysAND"><i>AND</i></label>
+            <input type="checkbox" name="cbxSysOR" id="cbxSysOR" class="cbxOR" value="OR" onclick="checkedOnClick(this);">
+            <label for="cbxSysOR"><i>OR</i></label>
+            <input type="checkbox" name="cbxSysNOT" id="cbxSysNOT" class="cbxNOT" value="NOT" onclick="checkedOnClick(this);">
+            <label for="cbxSysNOT"><i>NOT</i></label>
         </div>
         <div>
             <label for="gameYearFrom"><b>Year from:</b></label>
@@ -65,11 +107,209 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             <input type="number" placeholder="0-100" name="gameRatingTo" class="inRating" min="0" max="100">
         </div>
         <button class="w3-button w3-padding w3-margin-top" type="submit" id="btnSearchGames">Search</button>
+        <button class="w3-button w3-padding w3-margin-top w3-margin-left" type="button" id="btnSearchGamesAnywhere">Search Anywhere</button>
     </div>
 </form>
 
-<script src="homepage.js" type="module"></script>
+<script>
+    counter = 0;
+    function checkedOnClick(el)
+    {
+        console.log(el.className);
+        console.log(el.name);
+        console.log(el.value);
+        if(el.className == "cbxAND")
+        {
+            if(el.checked)
+            {
+                counter++;
+                console.log(counter);
+                var checkboxesList = document.getElementsByClassName("cbxOR");
+                for (var i = 0; i < checkboxesList.length; i++) 
+                {
+                    checkboxesList.item(i).disabled = true;
+                }
+                if(el.name == "cbxNameAND")
+                {
+                    document.getElementById("cbxNameNOT").disabled = true;
+                }
+                else if(el.name == "cbxDescAND")
+                {
+                    document.getElementById("cbxDescNOT").disabled = true;
+                }
+                else if(el.name == "cbxDevAND")
+                {
+                    document.getElementById("cbxDevNOT").disabled = true;
+                }
+                else if(el.name == "cbxPubAND")
+                {
+                    document.getElementById("cbxPubNOT").disabled = true;
+                }
+                else if(el.name == "cbxGenAND")
+                {
+                    document.getElementById("cbxGenNOT").disabled = true;
+                }
+                else if(el.name == "cbxSysAND")
+                {
+                    document.getElementById("cbxSysNOT").disabled = true;
+                }
+            }
+            else
+            {
+                counter--;
+                console.log(counter);
+                if(counter == 0)
+                {
+                    var checkboxesList = document.getElementsByClassName("cbxOR");
+                    for (var i = 0; i < checkboxesList.length; i++) 
+                    {
+                        checkboxesList.item(i).disabled = false;
+                    }
+                }
+                
+                if(el.name == "cbxNameAND")
+                {
+                    document.getElementById("cbxNameNOT").disabled = false;
+                }
+                else if(el.name == "cbxDescAND")
+                {
+                    document.getElementById("cbxDescNOT").disabled = false;
+                }
+                else if(el.name == "cbxDevAND")
+                {
+                    document.getElementById("cbxDevNOT").disabled = false;
+                }
+                else if(el.name == "cbxPubAND")
+                {
+                    document.getElementById("cbxPubNOT").disabled = false;
+                }
+                else if(el.name == "cbxGenAND")
+                {
+                    document.getElementById("cbxGenNOT").disabled = false;
+                }
+                else if(el.name == "cbxSysAND")
+                {
+                    document.getElementById("cbxSysNOT").disabled = false;
+                }
+            }
+            
+        }
+        else if(el.className == "cbxOR")
+        {
+            if(el.checked)
+            {
+                counter++;
+                console.log(counter);
+                var checkboxesList = document.getElementsByClassName("cbxAND");
+                for (var i = 0; i < checkboxesList.length; i++) 
+                {
+                    checkboxesList.item(i).disabled = true;
+                }
+                checkboxesList = document.getElementsByClassName("cbxNOT");
+                for (var i = 0; i < checkboxesList.length; i++) 
+                {
+                    checkboxesList.item(i).disabled = true;
+                }
+            }
+            else
+            {
+                counter--;
+                console.log(counter);
+                if(counter == 0)
+                {
+                    var checkboxesList = document.getElementsByClassName("cbxAND");
+                    for (var i = 0; i < checkboxesList.length; i++) 
+                    {
+                        checkboxesList.item(i).disabled = false;
+                    }
+                    checkboxesList = document.getElementsByClassName("cbxNOT");
+                    for (var i = 0; i < checkboxesList.length; i++) 
+                    {
+                        checkboxesList.item(i).disabled = false;
+                    }
+                }
+            }
+            
+        }
+        else if(el.className == "cbxNOT")
+        {
+            if(el.checked)
+            {
+                counter++;
+                console.log(counter);
+                var checkboxesList = document.getElementsByClassName("cbxOR");
+                for (var i = 0; i < checkboxesList.length; i++) 
+                {
+                    checkboxesList.item(i).disabled = true;
+                }
+                if(el.name == "cbxNameNOT")
+                {
+                    document.getElementById("cbxNameAND").disabled = true;
+                }
+                else if(el.name == "cbxDescNOT")
+                {
+                    document.getElementById("cbxDescAND").disabled = true;
+                }
+                else if(el.name == "cbxDevNOT")
+                {
+                    document.getElementById("cbxDevAND").disabled = true;
+                }
+                else if(el.name == "cbxPubNOT")
+                {
+                    document.getElementById("cbxPubAND").disabled = true;
+                }
+                else if(el.name == "cbxGenNOT")
+                {
+                    document.getElementById("cbxGenAND").disabled = true;
+                }
+                else if(el.name == "cbxSysNOT")
+                {
+                    document.getElementById("cbxSysAND").disabled = true;
+                }
+            }
+            else
+            {
+                counter--;
+                console.log(counter);
+                if(counter == 0)
+                {
+                    var checkboxesList = document.getElementsByClassName("cbxOR");
+                    for (var i = 0; i < checkboxesList.length; i++) 
+                    {
+                        checkboxesList.item(i).disabled = false;
+                    }
+                }   
+                if(el.name == "cbxNameNOT")
+                {
+                    document.getElementById("cbxNameAND").disabled = false;
+                }
+                else if(el.name == "cbxDescNOT")
+                {
+                    document.getElementById("cbxDescAND").disabled = false;
+                }
+                else if(el.name == "cbxDevNOT")
+                {
+                    document.getElementById("cbxDevAND").disabled = false;
+                }
+                else if(el.name == "cbxPubNOT")
+                {
+                    document.getElementById("cbxPubAND").disabled = false;
+                }
+                else if(el.name == "cbxGenNOT")
+                {
+                    document.getElementById("cbxGenAND").disabled = false;
+                }
+                else if(el.name == "cbxSysNOT")
+                {
+                    document.getElementById("cbxSysAND").disabled = false;
+                }
+            }   
+        }
+    }
+</script>
 
 </body>
+
+<script src="homepage.js" type="module"></script>
 
 </html>
