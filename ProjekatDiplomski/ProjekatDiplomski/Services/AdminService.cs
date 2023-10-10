@@ -40,12 +40,6 @@ namespace ProjekatDiplomski.Services
 
         public async Task<Admin> GetAdminById(long id_Admin)
         {
-            /*object query = new { query_string = $"@id {id}" };
-            var searchRequest = new SearchRequest("users", query);
-            searchRequest.Limit = 1;
-            SearchResponse searchResponse = await _searchApi.SearchAsync(searchRequest);
-            var result = (User?)searchResponse.Hits.Hits.FirstOrDefault();*/
-
             string body = $"SELECT * FROM admins WHERE id={id_Admin};";
             var rawResponse = true;
             List<Object> resultList = _utilsApi.Sql(body, rawResponse);
@@ -77,14 +71,6 @@ namespace ProjekatDiplomski.Services
 
         public async Task<Admin> GetAdminByUsername(string username)
         {
-            /*//object query = new { query_string = $"proba" };
-            var searchRequest = new SearchRequest("users");
-            searchRequest.FulltextFilter = new MatchFilter(username, "username");
-            //searchRequest.Limit = 1;
-            SearchResponse searchResponse = await _searchApi.SearchAsync(searchRequest);
-            Console.WriteLine(searchResponse);
-            var resultList = searchResponse.Hits.Hits;*/
-
             string body = $"SELECT * FROM admins WHERE username = '{username}';";
             var rawResponse = true;
             List<Object> resultList = _utilsApi.Sql(body, rawResponse);
